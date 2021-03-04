@@ -1,0 +1,144 @@
+body {
+  background: #fff;
+  font-family: "Roboto", arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #999999;
+}
+
+a {
+  transition: .3s all ease;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.nav-header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+
+.site-hero{
+    background-image: url(../images/home-bg4.jpg);
+    background-size: cover;
+    background-position: center center;
+    min-height: 750px;
+    height: 100vh;
+    position: relative;
+}
+
+.quick-info{
+    margin-top: -100px;
+    margin-bottom: 100px;
+}
+
+.quick-info .bgcolor{
+    background: #000;
+    padding: 50px 0 30px;
+    position: relative;
+}
+.quick-info .bgcolor:after,
+.quick-info .bgcolor:before{
+    content: '';
+    background: inherit;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 140px;
+}
+.quick-info .bgcolor:after{
+    right: -140px;
+}
+.quick-info .bgcolor:before{
+    left: -140px;
+}
+
+.site-section{
+    padding: 3em 0;
+}
+
+.site-section-categories a{
+    display: block;
+    margin-bottom: 30px;
+}
+
+.site-section-categories a .img-wrap{
+    position: relative;
+    top: 0;
+    transition: .2s all ease;
+    color: white;
+}
+.site-section-categories a .img-wrap:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: .1;
+    transition: .2s all ease;
+}
+.site-section-categories a:hover .img-wrap:before{
+    opacity: .5;
+}
+
+.site-section-categories a .img-wrap p{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(0);
+    width: 100%;
+    opacity: 0;
+    display: inline-block;
+    text-align: center;
+    transition: .4s all ease;
+}
+.site-section-categories a:hover .img-wrap p{
+    transform: translateY(-50%);
+    opacity: 1;
+}
+
+.site-section-differential .fas{
+    font-size: 3em;
+    color: #ff6d24;
+    margin-bottom: .2em;
+}
+
+
+.section-cta{
+    background-image: url(../images/home-bg3.jpg);
+    background-size: cover;
+    height: 500px;
+    color: white;
+}
+.section-cta [type="email"]{
+    border-radius: 0;
+    background: rgba(255,255,2555,.8);
+}
+
+.btn, .form-control{
+    outline: none;
+    box-shadow: none !important;
+    border-radius: 0;
+}
+.btn-black{
+    color: white;
+    background: black;
+}
+
+.element-animate{
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
+
