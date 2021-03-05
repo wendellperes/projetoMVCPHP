@@ -3,7 +3,9 @@ namespace App\Controller;
 
 
 use App\Classes\Usuario;
-
+use App\Model\CreateUsuarioModel;
+use App\Model\VerificacaoUsuario;
+use App\Classes\BancoConexao;
 class CreateUserController{
     /**
      * reposta que ira prosseguir com o cadastro
@@ -32,19 +34,36 @@ class CreateUserController{
         $this->emailVerificacao = $chamarDadosUser->getDados()['email'];
 
         /*
-         * Chama a Funcao de verioficação de usuario
+         * Chama a Funcao de verificação de usuario
          */
-        $this->verificationUser();
-        //$this->emailVerificacao = $chamarDadosUser->getDadosUser()['nome'];
+        //$this->verificationUser();
+
+        /**
+         * verifica se a variavel de resposta e false para prosseguir com o cadastro
+         */
+        if ($this->resposta == false){
+            if ($_POST['permissao']='Aluno'){
+                $chamarCreateUserModel = new CreateUsuarioModel($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['permissao']);
+                $chamarCreateUserModel->enviarDados();
+
+            }else{
+
+            }
+
+        }else{
+            //redireciona para home da pagina com uma mensagem de error
+        }
 
 
 
     }
     public function verificationUser(){
         //chamar o modal de verificação
+//        $chamarVerify = new VerificacaoUsuario($this->nomeVerificacao, $this->emailVerificacao);
+//        $resposta = $chamarVerify->checkDados();
 
-        echo 'verificar';
         //receber o valor booleano
-        //$this->resposta = false;
+        $this->resposta = false;
+        return $this->resposta;
     }
 }
