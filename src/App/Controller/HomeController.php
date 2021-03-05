@@ -15,10 +15,7 @@ class HomeController{
                 'cache'=>'/path/to/compilation_cache',
                 'auto_reload'=>true]);
             $body = $twig->load('home.html');
-
-            //$conteudohead = $head->render();
-            $conteudobody = $body->render();
-            //echo $conteudohead;
+            $conteudobody = $body->render(['cadastroRealizado'=>'']);
             echo $conteudobody;
         }catch (LoaderError $error){
             echo 'errorLoader1--'.$error;

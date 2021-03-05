@@ -6,6 +6,11 @@ use App\Classes\Usuario;
 use App\Model\CreateUsuarioModel;
 use App\Model\VerificacaoUsuario;
 use App\Classes\BancoConexao;
+use Twig\Environment;
+use Twig\Error\Error;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Loader\FilesystemLoader;
 class CreateUserController{
     /**
      * reposta que ira prosseguir com o cadastro
@@ -36,7 +41,7 @@ class CreateUserController{
         /*
          * Chama a Funcao de verificação de usuario
          */
-        //$this->verificationUser();
+        $this->verificationUser();
 
         /**
          * verifica se a variavel de resposta e false para prosseguir com o cadastro
@@ -44,7 +49,25 @@ class CreateUserController{
         if ($this->resposta == false){
             if ($_POST['permissao']='Aluno'){
                 $chamarCreateUserModel = new CreateUsuarioModel($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['permissao']);
-                $chamarCreateUserModel->enviarDados();
+                //var_dump($chamarCreateUserModel->enviarDados());
+                if ($chamarCreateUserModel->enviarDados()){
+                    try {
+                        $loader = new FilesystemLoader('src/App/View');
+                        $twig = new Environment($loader, [
+                            'cache'=>'/path/to/compilation_cache',
+                            'auto_reload'=>true]);
+                        $body = $twig->load('home.html');
+                        $conteudobody = $body->render(['cadastroRealizado'=>'true', 'emailUser'=>"".$_POST['email'].""]);
+                        echo $conteudobody;
+                    }catch (LoaderError $error){
+                        echo 'errorLoader1--'.$error;
+                    }catch (RuntimeError $error2){
+                        echo 'errorRodar'.$error2;
+                    }catch (Error $error3){
+
+                    }
+                    //chama view dashboard com sucesso
+                }
 
             }else{
 

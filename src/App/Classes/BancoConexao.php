@@ -9,7 +9,7 @@ class BancoConexao{
      * e sera chamada sempre que necessitado
      * @var PDO
      */
-    public static $conexao;
+    public  $conexao;
 
     /**
      * Variavel que ira receber os dados da Tabela sempre que chamado
@@ -55,8 +55,8 @@ class BancoConexao{
             $this->database = $chamarDadosBanco->getDataBase();
 
             $dsn = 'mysql:host='.$this->host.';dbname='.$this->database.'';
-            self::$conexao = new PDO($dsn, $this->user, $this->senha);
-            self::$conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conexao = new PDO($dsn, $this->user, $this->senha);
+            $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch (PDOException $PDOException){
             die('Error: coneection'.$PDOException->getMessage());
 
@@ -71,7 +71,9 @@ class BancoConexao{
      */
     public function executar($query, $param = []){
         try {
-            $statement = self::$conexao->prepare($query);
+            $statement = $this->conexao->prepare($query);
+            $statement->execute($param);
+            return $statement;
         }catch (PDOException $e){
             die('erro:76 '.$e->getMessage());
         }
@@ -92,8 +94,19 @@ class BancoConexao{
         //echo "<pre>"; print_r($contador); echo "</pre>"; exit;
 
         $query = 'INSERT INTO '.$this->table.' ('.implode(',',$campos).') VALUES('.implode(',',$contador).')';
-        echo $query;
-        exit;
+
+        /**
+         * chamo o metodo Executar passando os parametros de
+         * Query e Valores
+         * Assim executando os Valores
+         */
+        $this->executar($query, array_values($params));
+
+        /**
+         * um retorno do ultimo id inserido
+         * caso tudo tenha dado certo o id inserido sera retornado
+         */
+        return  $this->conexao->lastInsertId();
     }
 
     /**

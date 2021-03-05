@@ -9,6 +9,7 @@ class CreateUsuarioModel{
      * As variaveis de usu para Verificação do usuario
      * Serao atribuidas no Construct da Class
      */
+    private $id;
     private $nomeUsuario;
     private $emailUsuario;
     private $senha;
@@ -37,13 +38,15 @@ class CreateUsuarioModel{
          * e os nomes das colunas e valores atraves de um arrau
          */
         $objBanco = new BancoConexao($nomeTabela);
-        $objBanco->inserir([
+        $this->id = $objBanco->inserir([
             'nome_aluno'=>$this->nomeUsuario,
             ' email_aluno'=>$this->emailUsuario,
             ' senha'=>$this->senha,
-            ' pemissao'=>$this->permissao,
+            ' permissao'=>$this->permissao,
         ]);
-        //echo "<pre>"; print_r($objBanco); echo "</pre>"; exit;
-        //return $this->permissao;
+
+        //retorna true com o sucesso do insert nos dados
+        return true;
+
     }
 }

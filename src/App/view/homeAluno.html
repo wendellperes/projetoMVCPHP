@@ -4,7 +4,7 @@
 <header class="nav-header">
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="http://localhost/webart/"><b>cursos</b>tec</a>
+            <a class="navbar-brand" href="#"><b>cursos</b>tec</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar__main" aria-controls="navbar__main" aria-expanded="false" aria-label="Abrir ou fechar menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -314,13 +314,13 @@
                         <input type="email" class="form-control" required name="email" id="emailCadastro" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
-                        <label for="senhaCadastro">Password</label>
+                        <label for="senhalogin">Password</label>
                         <input type="password" class="form-control" required name="senha" id="senhaCadastro">
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" required name="permissao" id="radioAluno" value="Aluno">
                         <label class="form-check-label" for="radioAluno">
-                           Aluno
+                            Aluno
                         </label>
                     </div>
                     <div class="form-check">
@@ -341,34 +341,7 @@
         </div>
     </div>
 </div>
-<!-- Button trigger modal -->
-<button type="button" id="acionarModalButton" class="btn btn-primary d-none" data-toggle="modal" data-target="#modalCadastroRealizado">
-    Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="modalCadastroRealizado" tabindex="-1" aria-labelledby="modalCadastroRealizadoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalCadastroRealizadoLabel">Sucesso!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Seu Cadastro com email: <span>{{emailUser}}</span> foi realizado com Sucesso!!!
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Logar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<input type="hidden" value="{{cadastroRealizado}}" id="cadastroRealizado">
-
-
-<script src="/../webart/src/App/view/js/verificacaoInicial.js"></script>
 <script src="/../webart/src/App/view/js/jquery-3.3.1.min.js"></script>
 <script src="/../webart/src/App/view/js/bootstrap.min.js"></script>
 <script src="/../webart/src/App/view/js/jquery.waypoints.min.js"></script>
