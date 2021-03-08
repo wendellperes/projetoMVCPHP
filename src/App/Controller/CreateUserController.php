@@ -54,7 +54,7 @@ class CreateUserController{
 
             //esse if se trata da resposta do envio de dados para o banco
             //casotodo envio de dados seja verdadeiro ele vai entrar no try cath
-            if ($chamarCreateUserModel->enviarDados()){
+            if ($chamarCreateUserModel->enviarDadosAluno()){
 
                 //Neste try ele tenta exibir/renderizar a pagina home
                 try {

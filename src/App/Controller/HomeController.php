@@ -8,6 +8,7 @@ use Twig\Loader\FilesystemLoader;
 
 class HomeController{
     public function exibirHome(){
+        //include __DIR__.'/../view/home-professor.php';
 
         try {
             $loader = new FilesystemLoader('src/App/View');

@@ -35,12 +35,19 @@
                     $view = new CreateUserController();
                     $view->createUser();
 
+                }else if ($this->controller === 'LoginController' && $this->methods === 'check'){
+                    $view = new LoginController();
+                    $view->loginUser();
+                }else{
+                    echo 'nao entrou';
                 }
             }else{
                 //caso nao exista url
                 //chama a homeController responsavel por exibir a view da home
                 $view = new HomeController();
                 $view->exibirHome();
+
+                require_once 'src/App/view/footer.php';
             }
 
         }

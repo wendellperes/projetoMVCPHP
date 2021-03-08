@@ -6,7 +6,7 @@ class Usuario{
     private $senha;
     private $permissao;
     private $array = [];
-    public function __construct($nome, $email, $senha, $permissao){
+    public function __construct($nome = null, $email = null, $senha = null, $permissao = null){
         $this->nome = $nome;
         $this->email = $email;
         $this->senha = $senha;
