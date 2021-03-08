@@ -1,0 +1,34 @@
+
+
+a {
+  transition: .3s all ease;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.nav-header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+}
+
+
+.site-hero{
+    background-image: url(../images/home-bg4.jpg);
+    background-size: cover;
+    background-position: center center;
+    min-height: 750px;
+    height: 100vh;
+    position: relative;
+}
+
+
+
+
+
+

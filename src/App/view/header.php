@@ -11,7 +11,11 @@
     <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/css/animate.css">
     <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/fonts/fontawesome/css/all.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/css/navJubumtron.css">
+    <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/css/body.css">
+    <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/css/cardInformacoes.css">
+    <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/css/categorias.css">
+    <link rel="stylesheet" type="text/css" href="/../webart/src/App/view/css/newLatter.css">
     <script src="/../webart/src/App/view/js/jquery-3.3.1.min.js"></script>
     <script src="/../webart/src/App/view/js/bootstrap.min.js"></script>
     <script src="/../webart/src/App/view/js/jquery.waypoints.min.js"></script>

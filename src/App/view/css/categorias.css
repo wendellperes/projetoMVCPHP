@@ -1,0 +1,45 @@
+.site-section{
+    padding: 3em 0;
+}
+
+.site-section-categories a{
+    display: block;
+    margin-bottom: 30px;
+}
+
+.site-section-categories a .img-wrap{
+    position: relative;
+    top: 0;
+    transition: .2s all ease;
+    color: white;
+}
+.site-section-categories a .img-wrap:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: black;
+    opacity: .1;
+    transition: .2s all ease;
+}
+.site-section-categories a:hover .img-wrap:before{
+    opacity: .5;
+}
+
+.site-section-categories a .img-wrap p{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(0);
+    width: 100%;
+    opacity: 0;
+    display: inline-block;
+    text-align: center;
+    transition: .4s all ease;
+}
+.site-section-categories a:hover .img-wrap p{
+    transform: translateY(-50%);
+    opacity: 1;
+}

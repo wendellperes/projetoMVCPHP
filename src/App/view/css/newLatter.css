@@ -1,0 +1,32 @@
+.site-section-differential .fas{
+    font-size: 3em;
+    color: #ff6d24;
+    margin-bottom: .2em;
+}
+
+
+.section-cta{
+    background-image: url(../images/home-bg3.jpg);
+    background-size: cover;
+    height: 500px;
+    color: white;
+}
+.section-cta [type="email"]{
+    border-radius: 0;
+    background: rgba(255,255,2555,.8);
+}
+
+.btn, .form-control{
+    outline: none;
+    box-shadow: none !important;
+    border-radius: 0;
+}
+.btn-black{
+    color: white;
+    background: black;
+}
+
+.element-animate{
+    opacity: 0;
+    visibility: hidden;
+}

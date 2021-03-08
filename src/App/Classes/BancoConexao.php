@@ -112,12 +112,13 @@ class BancoConexao{
     /**
      * Método responsavel pela recuperação de dados
      */
-    public function recuperarDados($params){
-//        $campos = array_keys($params);
-//
-//        $query = 'INSERT INTO '.$this->table.' ('.implode(',',$campos).') VALUES(?,?,?)';
-//        echo $query;
-//        exit;
+    public function select($where = null, $order = null, $limit = null){
+        $where = strlen($where) ? 'WHERE '. $where : '';
+        $order = strlen($order) ? 'ORDER BY '. $order : '';
+        $limit = strlen($limit) ? 'LIMIT '. $limit : '';
+
+        $query = 'SELECT * FROM '.$this->table.' '.$where.' '.$order.' '.$limit;
+        return $this->executar($query);
 
     }
 }
