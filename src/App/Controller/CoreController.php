@@ -5,22 +5,28 @@
         private $controller;
         private $methods = 'index';
         private $params = [];
+        private $user;
 
         /**
          * recebe o Parametro get do index e um chamada
          * @param $request
          * @return chamada para um controller diferente
          */
+        public function __construct(){
+            $this->user = $_SESSION['user'] ?? null;
+        }
+
         public function star($request){
             //verifica se existe uma url
             if(isset($request['url'])){
                 //quebra a url em array e atribui valor de um dos 3 indices a varivael
                 $this->url = explode('/', $request['url']);
                 $this->controller = ucfirst($this->url[1].'Controller');
-
                 if (isset($this->url[2]) && $this->url[2]  != ''){
                     $this->methods = $this->url[2];
-                }else return false;
+                }else {
+                    $this->url[2] = $this->methods;
+                };
 
                 if (isset($this->url[3]) && $this->url[3] != ''){
                     $this->params = $this->url[3];
@@ -38,8 +44,10 @@
                 }else if ($this->controller === 'LoginController' && $this->methods === 'check'){
                     $view = new LoginController();
                     $view->loginUser();
+                }else if($this->controller === 'UserController' && $this->methods === 'logado'){
+                    include __DIR__."/../view/home-professor.php";
                 }else{
-                    echo 'nao entrou';
+                    include __DIR__."/../view/404error.php";
                 }
             }else{
                 //caso nao exista url

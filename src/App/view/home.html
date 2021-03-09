@@ -286,15 +286,19 @@
                             Professor
                         </label>
                     </div>
-                    <div class="text-center">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <small class="form-text text-muted text-center">Não Possui Conta? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modalCadastro">Cadastre - se</a></small>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <small class="form-text text-muted text-center"><a href="#">Esqueceu sua senha?</a></small>
+                        </div>
+                    </div>
+                    <div class="text-center mt-5">
                         <button type="submit" class="btn btn-primary">Entrar</button>
                     </div>
 
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modalCadastro">Cadastrar-se</button>
             </div>
         </div>
     </div>
@@ -352,26 +356,25 @@
     Launch demo modal
 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="modalCadastroRealizado" tabindex="-1" aria-labelledby="modalCadastroRealizadoLabel" aria-hidden="true">
+<!-- Modal em Respostas de cadastro realizado ou usuario ja cadastrado-->
+<div class="modal fade" id="modalCadastroRealizado" tabindex="-1" aria-labelledby="modalMenssageTitle" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCadastroRealizadoLabel">Sucesso!</h5>
+                <h5 class="modal-title" id="modalMenssageTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                Seu Cadastro com email: <span>{{emailUser}}</span> foi realizado com Sucesso!!!
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Logar</button>
+            <div class="modal-body" id="bodyModal">
+
             </div>
         </div>
     </div>
 </div>
 <input type="hidden" value="{{cadastroRealizado}}" id="cadastroRealizado">
+<input type="hidden" value="{{usuarioCadastrado}}" id="usuarioCadastrado">
+<input type="hidden" value="{{emailUser}}" id="emailUser">
 
 
 <script src="/../webart/src/App/view/js/verificacaoInicial.js"></script>

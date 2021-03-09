@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classes\Usuario;
 use App\Model\CreateUsuarioModel;
+use App\Model\ReadDatabaseModel;
 use App\Model\VerificacaoUsuarioModel;
 use App\Classes\BancoConexao;
 use Twig\Environment;
@@ -80,11 +81,33 @@ class CreateUserController{
                 }catch (Error $error3){
 
                 }
-                //chama view dashboard com sucesso
             }
 
         }else{
+            //Neste try ele tenta exibir/renderizar a pagina home
+            try {
+                $loader = new FilesystemLoader('src/App/View');
 
+                $twig = new Environment($loader, [
+                    'cache'=>'/path/to/compilation_cache',
+                    'auto_reload'=>true]);
+
+                //usa uma função do twig para carregar a pagina com o nome
+                $body = $twig->load('home.html');
+
+                //Aqui ele envia uma variavel que sera verificada pelo javascript
+                //que caso seja true exibirar um modal de sucesso na tela do usuario
+                //e mostra tbm o email que ele usou para fazer cadastro
+                $conteudobody = $body->render(['usuarioCadastrado'=>'true', 'emailUser'=>"".$_POST['email'].""]);
+                //da um echo da rendizacao
+                echo $conteudobody;
+            }catch (LoaderError $error){
+                echo 'errorLoader1--'.$error;
+            }catch (RuntimeError $error2){
+                echo 'errorRodar'.$error2;
+            }catch (Error $error3){
+
+            }
             //redireciona para home da pagina com uma mensagem de error
             //erro esse email ja esta cadastrado
         }
@@ -93,12 +116,23 @@ class CreateUserController{
 
     }
     public function verificationUser(){
-        //chamar o modal de verificação de cadastro duplicado do usuario
-//        $chamarVerify = new VerificacaoUsuario($this->nomeVerificacao, $this->emailVerificacao);
-//        $resposta = $chamarVerify->checkDados();
+        /*
+         * usando operador ternario para inserir nome da tabela e da condicao de busca no banco de dados
+         */
+        $_POST['permissao'] === 'Aluno' ? $nometabela = 'usuario_aluno' : $nometabela = 'usuario_professor';
 
-        //receber o valor booleano
-        $this->resposta = false;
+        $nometabela === 'usuario_aluno' ?
+            $whereEmail = 'email_aluno = "'.$_POST["email"].'" and nome_aluno = "'.$_POST["nome"].'"'
+            : $whereEmail = 'email_professor = "'.$_POST["email"].'" and nome_professor = "'.$_POST["nome"].'"';
+
+        $response =  ReadDatabaseModel::getDadosBanco($nometabela, $whereEmail);
+        if ($response){
+            //echo 'ja cadastrado';
+            $this->resposta = true;
+        }else{
+            //echo 'ainda nao cadastrado';
+            $this->resposta = false;
+        }
         return $this->resposta;
     }
 }

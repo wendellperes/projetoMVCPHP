@@ -27,6 +27,7 @@ class LoginController{
     private $senhaLogin;
 
     public function loginUser(){
+
         /*
          * usando operador ternario para inserir nome da tabela e da condicao de busca no banco de dados
          */
@@ -44,15 +45,22 @@ class LoginController{
             //verifica qual a permissao do usuario que tentou logar para redirecionar para pagina certa
             if($response[0]->permissao === 'Professor'){
 
+                $_SESSION['id'] = $response[0]->id;
+                $_SESSION['nomeUser'] = $response[0]->nome_professor;
+                header("location: http://localhost/webart/user/logado");
+                //include __DIR__."/../view/home-professor.php";
                 //chama dashboard professor
-                echo $response[0]->permissao;
-                echo "<pre>"; print_r($response); echo "</pre>";
+
 
             }else{
+                $_SESSION['id'] = $response[0]->id;
+                //chama dashboard professor
+                echo $_SESSION['id'];
+                echo "<pre>"; print_r($response); echo "</pre>";
                 //chama dashbaord aluno
             }
 
-        //caso nao tenha restornado informa que email e senha estao incorretos
+        //caso nao tenha restornado dados informa que email e senha estao incorretos
         }else{
             //volta a home com notificação de email e senha incorretos
             echo 'nao trouxe dados';

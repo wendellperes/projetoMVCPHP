@@ -15,6 +15,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="menu_categoria" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Minha Conta</a>
+                    <div class="dropdown-menu" aria-labelledby="menu_categoria">
+                        <a class="dropdown-item" href="#">Perfil</a>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sair</a>
                 </li>
@@ -30,7 +37,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
-                <h2 class="mb-3">Bem Vindo! <br> Professor Fulano</h2>
+                <h2 class="mb-3">Bem Vindo! <br> <?php echo $_SESSION['nomeUser']?></h2>
                 <p>Olá! seja muito bem vindo estamos felizes em te ver novamente e continue
                     seus cursos na tabela abaixo</p>
             </div>
