@@ -1,10 +1,12 @@
 $(document).ready(function () {
+
+    //check os dados para exibicao de mensagem login/cadastroUsuario
     let cadastro = $("#cadastroRealizado").val();
     let cadastroDuplicado = $("#usuarioCadastrado").val();
     let emailUser = $("#emailUser").val();
 
     if (cadastro === 'true'){
-        // define os textos a serem exibidos no formulario
+        // define os textos a serem exibidos no Modal
         let textTitle = "Sucesso!!!"
         let textBody  = "Seu Cadastro com email: "+emailUser+" foi realizado com Sucesso!!!"
 
@@ -13,9 +15,9 @@ $(document).ready(function () {
         $("#bodyModal").append(textBody);
 
         //chama a funcao que vai exibir o modal
-        exibirModalCadastroRealizado();
-    }else if (cadastroDuplicado === 'true'){
-        // define os textos a serem exibidos no formulario
+        exibirModalCadastro();
+    }else if (cadastro === 'duplicado'){
+        // define os textos a serem exibidos no Modal
         let textTitle = "Atenção!!!"
         let textBody  = "Já existe uma conta registrada com esse email: "+emailUser+"! "
 
@@ -24,11 +26,25 @@ $(document).ready(function () {
         $("#bodyModal").append(textBody);
 
         //chama a funcao que vai exibir o modal
-        exibirModalCadastroRealizado();
+        exibirModalCadastro();
+    }else if ( cadastro === 'naoencontrado'){
+        // define os textos a serem exibidos no Modal
+        let textTitle = "Atenção!!!"
+        let textBody  = "Verifique seu email e senha ou Cadastre-se! "
+
+        //insere no html via id os textos
+        $("#modalMenssageTitle").append(textTitle);
+        $("#bodyModal").append(textBody);
+
+        //chama a funcao que vai exibir o modal
+        exibirModalCadastro();
     }
+
+
 });
-function exibirModalCadastroRealizado(){
+function exibirModalCadastro(){
     $('#acionarModalButton').click();
 }
+
 
 

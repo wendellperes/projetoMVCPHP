@@ -95,10 +95,8 @@ class CreateUserController{
                 //usa uma função do twig para carregar a pagina com o nome
                 $body = $twig->load('home.html');
 
-                //Aqui ele envia uma variavel que sera verificada pelo javascript
-                //que caso seja true exibirar um modal de sucesso na tela do usuario
-                //e mostra tbm o email que ele usou para fazer cadastro
-                $conteudobody = $body->render(['usuarioCadastrado'=>'true', 'emailUser'=>"".$_POST['email'].""]);
+
+                $conteudobody = $body->render(['cadastroRealizado'=>'duplicado', 'emailUser'=>"".$_POST['email'].""]);
                 //da um echo da rendizacao
                 echo $conteudobody;
             }catch (LoaderError $error){

@@ -45,7 +45,11 @@
                     $view = new LoginController();
                     $view->loginUser();
                 }else if($this->controller === 'UserController' && $this->methods === 'logado'){
-                    include __DIR__."/../view/home-professor.php";
+
+                    require_once 'src/App/view/home-professor.php';
+                }else if ($this->controller === 'CreateController' && $this->methods === 'curso'){
+                    $view = new CreateCursoController();
+                    $view->createCurso();
                 }else{
                     include __DIR__."/../view/404error.php";
                 }

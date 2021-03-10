@@ -34,10 +34,10 @@ class LoginController{
         $_POST['permissao'] === 'Aluno' ? $nometabela = 'usuario_aluno' : $nometabela = 'usuario_professor';
 
         $nometabela === 'usuario_aluno' ?
-            $whereEmail = 'email_aluno = "'.$_POST["emailLogin"].'" and senha = "'.$_POST["senhaLogin"].'"'
-            : $whereEmail = 'email_professor = "'.$_POST["emailLogin"].'" and senha = "'.$_POST["senhaLogin"].'"';
+            $where = 'email_aluno = "'.$_POST["emailLogin"].'" and senha = "'.$_POST["senhaLogin"].'"'
+            : $where = 'email_professor = "'.$_POST["emailLogin"].'" and senha = "'.$_POST["senhaLogin"].'"';
 
-        $response =  ReadDatabaseModel::getDadosBanco($nometabela, $whereEmail);
+        $response =  ReadDatabaseModel::getDadosBanco($nometabela, $where);
 
         //verifica se retornou com dados
         if ($response){
@@ -48,13 +48,11 @@ class LoginController{
                 $_SESSION['id'] = $response[0]->id;
                 $_SESSION['nomeUser'] = $response[0]->nome_professor;
                 header("location: http://localhost/webart/user/logado");
-                //include __DIR__."/../view/home-professor.php";
                 //chama dashboard professor
 
 
             }else{
                 $_SESSION['id'] = $response[0]->id;
-                //chama dashboard professor
                 echo $_SESSION['id'];
                 echo "<pre>"; print_r($response); echo "</pre>";
                 //chama dashbaord aluno
@@ -63,20 +61,30 @@ class LoginController{
         //caso nao tenha restornado dados informa que email e senha estao incorretos
         }else{
             //volta a home com notificação de email e senha incorretos
-            echo 'nao trouxe dados';
+            //Neste try ele tenta exibir/renderizar a pagina home
+            try {
+                $loader = new FilesystemLoader('src/App/View');
+
+                $twig = new Environment($loader, [
+                    'cache'=>'/path/to/compilation_cache',
+                    'auto_reload'=>true]);
+
+                //usa uma função do twig para carregar a pagina com o nome
+                $body = $twig->load('home.html');
+
+                //Aqui ele envia uma variavel que sera verificada pelo javascript
+                //que caso seja true exibirar um modal de sucesso na tela do usuario
+                //e mostra tbm o email que ele usou para fazer cadastro
+                $conteudobody = $body->render(['cadastroRealizado'=>'naoencontrado', ]);
+                //da um echo da rendizacao
+                echo $conteudobody;
+            }catch (LoaderError $error){
+                echo 'errorLoader1--'.$error;
+            }catch (RuntimeError $error2){
+                echo 'errorRodar'.$error2;
+            }catch (Error $error3){
+
+            }
         }
-
-
-
-
-    }
-    public function verificationUser(){
-        //chamar o modal de verificação de cadastro duplicado do usuario
-//        $chamarVerify = new VerificacaoUsuario($this->nomeVerificacao, $this->emailVerificacao);
-//        $resposta = $chamarVerify->checkDados();
-
-        //receber o valor booleano
-        $this->resposta = false;
-        return $this->resposta;
     }
 }

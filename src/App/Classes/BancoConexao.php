@@ -75,7 +75,8 @@ class BancoConexao{
             $statement->execute($param);
             return $statement;
         }catch (PDOException $e){
-            die('erro:76 '.$e->getMessage());
+            //echo 'erro:78'.$e;
+            return false;
         }
     }
 

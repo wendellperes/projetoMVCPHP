@@ -1,9 +1,30 @@
+<?php
 
+    use App\Model\ReadDatabaseCursosModel;
+    use App\Controller\CreateCursoController;
+    $result = '';
+    $cursos = ReadDatabaseCursosModel::getDadosBanco('id_professor = "'.$_SESSION["id"].'"');
+    foreach ($cursos as $curso){
+        //var_dump($curso->categoria);
+        $result .='<tr>
+                    <td>'.$curso->id_curso.'</td>
+                    <td><img src='.$curso->img_curso.'></td>
+                    <td>'.$curso->nome_curso.'</td>
+                    <td>'.$curso->carga_horaria.'</td>
+                    <td><button type="button" class="btn btn-primary btn-sm">Alualizar</button></td>
+                    </tr>';
+
+    }
+    //recebe a variavel para exibir a mensagem de cadastro realizado ou nao
+    $cadastroRealizado = '';
+    $cadastroRealizado .= CreateCursoController::getResposta();
+
+?>
 <body>
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Cursos Tec</a>
+        <a class="navbar-brand" href="http://localhost/webart/user/logado">Cursos Tec</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,7 +58,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
-                <h2 class="mb-3">Bem Vindo! <br> <?php echo $_SESSION['nomeUser']?></h2>
+                <h2 class="mb-3">Bem Vindo! <br> <?php  echo $_SESSION['nomeUser']?></h2>
                 <p>Olá! seja muito bem vindo estamos felizes em te ver novamente e continue
                     seus cursos na tabela abaixo</p>
             </div>
@@ -92,34 +113,18 @@
                 <thead>
                 <tr>
                     <th scope="col">N°</th>
+                    <th scope="col">imagem</th>
                     <th scope="col">Nome Curso</th>
                     <th scope="col">Carga Horária</th>
                     <th scope="col">Acao</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">Alualizar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <?php echo $result?>
                 </tbody>
             </table>
             <div class="container text-center">
-                <button type="button" class="btn btn-success btn-sm">Cadastrar novo curso +</button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalCadastroCurso">Cadastrar novo curso +</button>
 
             </div>
         </div>
@@ -127,89 +132,41 @@
 </section>
 
 
-
-
-<!-- Modal de login -->
-<div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLoginLabel">cursostec Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formLogin" method="post" action="http://localhost/webart/login.">
-                    <div class="form-group">
-                        <label for="emaillogin">Email address</label>
-                        <input type="email" class="form-control" id="emaillogin" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                        <label for="senhalogin">Password</label>
-                        <input type="password" class="form-control" id="senhalogin">
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" required name="permissao" id="radioAlunologin" value="Aluno">
-                        <label class="form-check-label" for="radioAlunologin">
-                            Aluno
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="permissao" id="radioProfessorlogin" value="Professor">
-                        <label class="form-check-label" for="radioProfessorlogin">
-                            Professor
-                        </label>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modalCadastro">Cadastrar-se</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal de cadastro-->
-<div class="modal fade" id="modalCadastro" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+<div class="modal fade" id="modalCadastroCurso" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCadastroLabel">cursostec Login</h5>
+                <h5 class="modal-title" id="modalCadastroLabel">cursostec - Cadastro Cursos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formCadastro" method="post" action="http://localhost/webart/create/user">
+                <form id="formCadastroCursos" method="post" action="http://localhost/webart/create/curso">
                     <div class="form-group">
-                        <label for="nomeCadastro">Nome Completo</label>
-                        <input type="text" class="form-control" required name="nome" id="nomeCadastro" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                        <label for="emailCadastro">Email</label>
-                        <input type="email" class="form-control" required name="email" id="emailCadastro" aria-describedby="emailHelp">
+                        <label for="nomecurso">Nome do Curso</label>
+                        <input type="text" class="form-control" value="" required name="nome" id="nomecurso" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
-                        <label for="senhaCadastro">Password</label>
-                        <input type="password" class="form-control" required name="senha" id="senhaCadastro">
+                        <label for="img_curso">Selecione uma imagem para seu curso</label>
+                        <input type="file" name="imageCurso" value="" class="form-control-file" id="img_curso">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" required name="permissao" id="radioAluno" value="Aluno">
-                        <label class="form-check-label" for="radioAluno">
-                            Aluno
-                        </label>
+                    <div class="form-group">
+                        <label for="cargahoraria">Carga Horaria</label>
+                        <input type="text" class="form-control" value="" required name="cargaHoraria" id="cargahoraria" aria-describedby="emailHelp">
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="permissao" id="radioProfessor" value="Professor">
-                        <label class="form-check-label" for="radioProfessor">
-                            Professor
-                        </label>
+
+                    <div class="form-group">
+                        <label for="categoriasCursos">Categorias</label>
+                        <select class="form-control" name="categoria" id="categoriasCursos">
+                            <option value="">Selecione uma categoria</option>
+                            <option value="frontend">Front end</option>
+                            <option value="backend">Back end</option>
+                            <option value="fullstack">Fullstack</option>
+                        </select>
                     </div>
+                    <input type="hidden" name="id_professor" value="<?php echo $_SESSION['id']?>">
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </div>
@@ -222,34 +179,30 @@
         </div>
     </div>
 </div>
-<!-- Button trigger modal -->
-<button type="button" id="acionarModalButton" class="btn btn-primary d-none" data-toggle="modal" data-target="#modalCadastroRealizado">
+<button type="button" id="acionarModalCadastroCurso" class="btn btn-primary d-none" data-toggle="modal" data-target="#cadastroRealizadoCurso">
     Launch demo modal
 </button>
 
-<!-- Modal -->
-<div class="modal fade" id="modalCadastroRealizado" tabindex="-1" aria-labelledby="modalCadastroRealizadoLabel" aria-hidden="true">
+<!-- Modal em Respostas de cadastro realizado ou usuario ja cadastrado-->
+<div class="modal fade" id="cadastroRealizadoCurso" tabindex="-1" aria-labelledby="modalMenssageTitle" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCadastroRealizadoLabel">Sucesso!</h5>
+                <h5 class="modal-title" id="modalMenssageTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                Seu Cadastro com email: <span>{{emailUser}}</span> foi realizado com Sucesso!!!
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Logar</button>
+            <div class="modal-body" id="bodyModal">
+
             </div>
         </div>
     </div>
 </div>
-<input type="hidden" value="{{cadastroRealizado}}" id="cadastroRealizado">
+<input type="hidden" value="<?php echo $cadastroRealizado ?>" id="cadastro">
 
 
-<script src="/../webart/src/App/view/js/verificacaoInicial.js"></script>
+<script src="/../webart/src/App/view/js/verificacao-home-professor.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="/../webart/src/App/view/js/jquery-3.3.1.min.js"></script>
