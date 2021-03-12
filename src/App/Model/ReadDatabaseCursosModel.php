@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Classes\BancoConexao;
+
 use \PDO;
 
 class ReadDatabaseCursosModel{
@@ -25,6 +26,6 @@ class ReadDatabaseCursosModel{
      */
     public static function getDadosBanco($where = null, $order = null, $limit = null){
         return (new BancoConexao('cursos_cadastrados'))->select( $where, $order, $limit)
-            ->fetchAll(PDO::FETCH_CLASS, self::class);
+                                                        ->fetchAll(PDO::FETCH_ASSOC);
     }
 }

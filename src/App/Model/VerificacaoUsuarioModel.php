@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Classes\BancoConexao;
 
 class VerificacaoUsuarioModel{
+
     /*
      * As variaveis de usu para Verificação do usuario
      * Serao atribuidas no Construct da Class

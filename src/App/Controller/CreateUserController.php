@@ -23,21 +23,15 @@ class CreateUserController{
      * Estas duas variaveis serao enviadas para o modal para checkar duplicidade
      * @var string
      */
-    private $nomeVerificacao;
-    private $emailVerificacao;
 
     public function createUser(){
+
         /*
          * Instanciando um novo Objeto da Classe Usuario na Variavel $chamarDadosUser
          * Passando os Dados do Formulario via Post para o Construct
          */
         $chamarDadosUser = new Usuario($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['permissao']);
 
-        /*
-         * Seta nas Variaveis de verificação do nome e email
-         */
-        $this->nomeVerificacao = $chamarDadosUser->getDados()['nome'];
-        $this->emailVerificacao = $chamarDadosUser->getDados()['email'];
 
         /*
          * Chama a Funcao de verificação de usuario
@@ -48,6 +42,7 @@ class CreateUserController{
          * verifica se a variavel de resposta e false para prosseguir com o cadastro
          */
         if ($this->resposta == false){
+
             //instancia a model CreateUsuarioModel na variavel $chamarCreateUsermodel
             //enviado os dados do formulario para o construt da class
             $chamarCreateUserModel = new CreateUsuarioModel($_POST['nome'], $_POST['email'], $_POST['senha'], $_POST['permissao']);
@@ -71,7 +66,7 @@ class CreateUserController{
                     //Aqui ele envia uma variavel que sera verificada pelo javascript
                     //que caso seja true exibirar um modal de sucesso na tela do usuario
                     //e mostra tbm o email que ele usou para fazer cadastro
-                    $conteudobody = $body->render(['cadastroRealizado'=>'true', 'emailUser'=>"".$_POST['email'].""]);
+                    $conteudobody = $body->render($array);
                     //da um echo da rendizacao
                     echo $conteudobody;
                 }catch (LoaderError $error){
@@ -94,7 +89,6 @@ class CreateUserController{
 
                 //usa uma função do twig para carregar a pagina com o nome
                 $body = $twig->load('home.html');
-
 
                 $conteudobody = $body->render(['cadastroRealizado'=>'duplicado', 'emailUser'=>"".$_POST['email'].""]);
                 //da um echo da rendizacao

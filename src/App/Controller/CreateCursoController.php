@@ -37,12 +37,12 @@ class CreateCursoController{
         $response = $chamarDadosCursos->enviarDadosCurso();
         //print_r($response);
         if($response != 0){
-            header("location: http://localhost/webart/user/logado");
+            header("location: http://localhost/webart/user/logado/professor");
             self::$resposta = 'true';
             echo self::$resposta;
             //echo 'cadastro Realizado com sucesso';
         }else{
-            header("location: http://localhost/webart/user/logado");
+            header("location: http://localhost/webart/user/logado/professor");
             self::$resposta = 'false';
             echo self::$resposta;
             //echo 'nao cadastrou';

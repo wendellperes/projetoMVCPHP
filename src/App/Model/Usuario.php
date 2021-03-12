@@ -13,7 +13,6 @@ class Usuario{
         $this->permissao = $permissao;
     }
     public function getDados(){
-
         $this->array['nome'] = $this->nome;
         $this->array['email'] = $this->email;
         $this->array['senha'] = $this->senha;

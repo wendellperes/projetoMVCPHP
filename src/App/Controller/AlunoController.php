@@ -6,7 +6,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Loader\FilesystemLoader;
 
-class HomeController{
+class AlunoController{
 
     public function exibirHome(){
 
@@ -15,7 +15,7 @@ class HomeController{
             $twig = new Environment($loader, [
                 'cache'=>'/path/to/compilation_cache',
                 'auto_reload'=>true]);
-            $body = $twig->load('home.html');
+            $body = $twig->load('home-aluno.html');
             $footer = $twig->load('footer.html');
 
             $conteudoFooter = $footer->render();

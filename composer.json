@@ -1,5 +1,6 @@
 {
   "autoload": {
+    "classmap": ["src/App/Controller", "src/App/Model"],
     "psr-4": {
       "App\\": "src/App"
     }

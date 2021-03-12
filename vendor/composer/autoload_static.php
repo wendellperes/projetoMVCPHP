@@ -47,6 +47,21 @@ class ComposerStaticInite818f8c866bbd1e417efc3b9091dc6ca
     );
 
     public static $classMap = array (
+        'App\\Classes\\BancoConexao' => __DIR__ . '/../..' . '/src/App/Model/BancoConexao.php',
+        'App\\Classes\\DadosBanco' => __DIR__ . '/../..' . '/src/App/Model/DadosBanco.php',
+        'App\\Classes\\Usuario' => __DIR__ . '/../..' . '/src/App/Model/Usuario.php',
+        'App\\Controller\\AlunoController' => __DIR__ . '/../..' . '/src/App/Controller/AlunoController.php',
+        'App\\Controller\\CoreController' => __DIR__ . '/../..' . '/src/App/Controller/CoreController.php',
+        'App\\Controller\\CreateCursoController' => __DIR__ . '/../..' . '/src/App/Controller/CreateCursoController.php',
+        'App\\Controller\\CreateUserController' => __DIR__ . '/../..' . '/src/App/Controller/CreateUserController.php',
+        'App\\Controller\\HomeController' => __DIR__ . '/../..' . '/src/App/Controller/HomeController.php',
+        'App\\Controller\\LoginController' => __DIR__ . '/../..' . '/src/App/Controller/LoginController.php',
+        'App\\Model\\CreateCursosModel' => __DIR__ . '/../..' . '/src/App/Model/CreateCursosModel.php',
+        'App\\Model\\CreateUsuarioModel' => __DIR__ . '/../..' . '/src/App/Model/CreateUsuarioModel.php',
+        'App\\Model\\ReadDatabaseCursosModel' => __DIR__ . '/../..' . '/src/App/Model/ReadDatabaseCursosModel.php',
+        'App\\Model\\ReadDatabaseModel' => __DIR__ . '/../..' . '/src/App/Model/ReadDatabaseModel.php',
+        'App\\Model\\UsuarioModel' => __DIR__ . '/../..' . '/src/App/Model/UsuarioModel.php',
+        'App\\Model\\VerificacaoUsuarioModel' => __DIR__ . '/../..' . '/src/App/Model/VerificacaoUsuarioModel.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

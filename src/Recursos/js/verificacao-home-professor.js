@@ -36,6 +36,8 @@ $(document).ready( function (){
     //     console.log('nao funcionou');
     // }
 });
-// function exibirModalCadastroCurso(){
-//     $('#acionarModalCadastroCurso').click();
-// }
+function exibirModalAtualizar(id, nome){
+     //$("#editar").val(id);
+    // $("#nomecurso").val(nome);
+    console.log(id, );
+}

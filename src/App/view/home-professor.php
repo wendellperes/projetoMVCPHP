@@ -4,20 +4,26 @@
     use App\Controller\CreateCursoController;
     $result = '';
     $cursos = ReadDatabaseCursosModel::getDadosBanco('id_professor = "'.$_SESSION["id"].'"');
+
     foreach ($cursos as $curso){
-        //var_dump($curso->categoria);
+        print_r($curso);
+        exit;
         $result .='<tr>
                     <td>'.$curso->id_curso.'</td>
                     <td><img src='.$curso->img_curso.'></td>
                     <td>'.$curso->nome_curso.'</td>
                     <td>'.$curso->carga_horaria.'</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">Alualizar</button></td>
+                    <td>
+                        <button type="button" data-toggle="modal" data-target="#modalCadastroCurso" 
+                        onclick="exibirModalAtualizar('.$curso->id_curso.')" id="butaoAtualizar" class="btn btn-primary btn-sm">Alualizar
+                        </button>
+                    </td>
                     </tr>';
 
     }
     //recebe a variavel para exibir a mensagem de cadastro realizado ou nao
-    $cadastroRealizado = '';
-    $cadastroRealizado .= CreateCursoController::getResposta();
+//    $cadastroRealizado = '';
+//    $cadastroRealizado = CreateCursoController::getResposta();
 
 ?>
 <body>
@@ -44,7 +50,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sair</a>
+                    <a class="nav-link" href="http://localhost/webart/logout/check">Sair</a>
                 </li>
             </ul>
         </div>
@@ -200,6 +206,7 @@
     </div>
 </div>
 <input type="hidden" value="<?php echo $cadastroRealizado ?>" id="cadastro">
+<input type="hidden" value="" id="editar">
 
 
 <script src="/../webart/src/App/view/js/verificacao-home-professor.js"></script>
