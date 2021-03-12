@@ -55,6 +55,7 @@ class LoginController{
 
                 }else{
                     $_SESSION['id'] = $response[0]->id;
+                    $_SESSION['permissao'] = $response[0]->permissao;
                     $_SESSION['nomeUser'] = $response[0]->nome_aluno;
                     header("location: http://localhost/webart/user/logado/aluno");
                     //chama dashbaord aluno
@@ -92,19 +93,15 @@ class LoginController{
             //verifica a existencia de session
             if(isset($_SESSION['permissao']) && $_SESSION['permissao'] == 'Professor'){
                 require_once 'src/App/view/home-professor.php';
+
             }else if (isset($_SESSION['permissao']) && $_SESSION['permissao'] == 'Aluno'){
                 //chama o controller responsavel por renderizar a tela do home aluno
                 $view = new AlunoController();
+
                 $view->exibirHome();
             }else{
-                //caso nao exista url
-                //e nem session ele exibe a home
-                //chama a homeController responsavel por exibir a view da home
+                //caso nao exista session ele exibe a home
                 header("location: http://localhost/webart/");
-//                $view = new HomeController();
-//                $view->exibirHome();
-//                $footer = new footer();
-//                $footer->getDados();
             }
         }
 

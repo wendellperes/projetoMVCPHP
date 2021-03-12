@@ -51,10 +51,10 @@
 
 
                 }else if($this->controller === 'UserController' && $this->methods === 'logado' && $this->params == 'professor'){
-                    require_once 'src/App/view/home-professor.php';
-                    //aqui foi um teste criando uma classe que ira retornar o footer atraves de um echo
-                    $footer = new footer();
-                    $footer->getDados();
+                    $view = new ProfessorController();
+                    $view->exibirHome();
+
+
 
 
                 }else if($this->controller === 'UserController' && $this->methods === 'logado' && $this->params == 'aluno'){

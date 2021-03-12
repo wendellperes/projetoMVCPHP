@@ -56,6 +56,7 @@ class ComposerStaticInite818f8c866bbd1e417efc3b9091dc6ca
         'App\\Controller\\CreateUserController' => __DIR__ . '/../..' . '/src/App/Controller/CreateUserController.php',
         'App\\Controller\\HomeController' => __DIR__ . '/../..' . '/src/App/Controller/HomeController.php',
         'App\\Controller\\LoginController' => __DIR__ . '/../..' . '/src/App/Controller/LoginController.php',
+        'App\\Controller\\ProfessorController' => __DIR__ . '/../..' . '/src/App/Controller/ProfessorController.php',
         'App\\Model\\CreateCursosModel' => __DIR__ . '/../..' . '/src/App/Model/CreateCursosModel.php',
         'App\\Model\\CreateUsuarioModel' => __DIR__ . '/../..' . '/src/App/Model/CreateUsuarioModel.php',
         'App\\Model\\ReadDatabaseCursosModel' => __DIR__ . '/../..' . '/src/App/Model/ReadDatabaseCursosModel.php',

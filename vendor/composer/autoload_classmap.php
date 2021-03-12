@@ -15,6 +15,7 @@ return array(
     'App\\Controller\\CreateUserController' => $baseDir . '/src/App/Controller/CreateUserController.php',
     'App\\Controller\\HomeController' => $baseDir . '/src/App/Controller/HomeController.php',
     'App\\Controller\\LoginController' => $baseDir . '/src/App/Controller/LoginController.php',
+    'App\\Controller\\ProfessorController' => $baseDir . '/src/App/Controller/ProfessorController.php',
     'App\\Model\\CreateCursosModel' => $baseDir . '/src/App/Model/CreateCursosModel.php',
     'App\\Model\\CreateUsuarioModel' => $baseDir . '/src/App/Model/CreateUsuarioModel.php',
     'App\\Model\\ReadDatabaseCursosModel' => $baseDir . '/src/App/Model/ReadDatabaseCursosModel.php',

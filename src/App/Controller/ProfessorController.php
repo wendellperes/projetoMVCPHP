@@ -7,7 +7,7 @@ use Twig\Error\RuntimeError;
 use Twig\Loader\FilesystemLoader;
 use App\Model\ReadDatabaseCursosModel;
 
-class AlunoController{
+class ProfessorController{
 
     public function exibirHome(){
 
@@ -17,12 +17,12 @@ class AlunoController{
             $twig = new Environment($loader, [
                 'cache'=>'/path/to/compilation_cache',
                 'auto_reload'=>true]);
-            $body = $twig->load('homealuno.html');
+            $body = $twig->load('homeProfessor.html');
             $footer = $twig->load('footer.html');
 
             $valores = array(
-                "dados" => ReadDatabaseCursosModel::getDadosBanco('id_professor = "1"'),
-                "nomeuser" => 'professorparams'
+                "dados" => ReadDatabaseCursosModel::getDadosBanco('id_professor = "'.$_SESSION["id"].'"'),
+                "nomeuser" => $_SESSION['nomeUser']
             );
 
             $conteudobody = $body->render( $valores);
