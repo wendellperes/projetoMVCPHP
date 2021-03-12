@@ -22,7 +22,8 @@ class ProfessorController{
 
             $valores = array(
                 "dados" => ReadDatabaseCursosModel::getDadosBanco('id_professor = "'.$_SESSION["id"].'"'),
-                "nomeuser" => $_SESSION['nomeUser']
+                "nomeuser" => $_SESSION['nomeUser'],
+                "idProfessor"=>$_SESSION["id"]
             );
 
             $conteudobody = $body->render( $valores);

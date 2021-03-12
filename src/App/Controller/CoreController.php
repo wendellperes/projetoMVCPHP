@@ -54,9 +54,6 @@
                     $view = new ProfessorController();
                     $view->exibirHome();
 
-
-
-
                 }else if($this->controller === 'UserController' && $this->methods === 'logado' && $this->params == 'aluno'){
 
                     //chama o controller responsavel por renderizar a tela do home aluno
@@ -69,6 +66,11 @@
                     $view->createCurso();
 
 
+                }else if ($this->controller === 'UpdateController' && $this->methods === 'curso'){
+                    $view = new UpdateCursoController();
+                    $view->UpdateCurso();
+
+
                 }else if ($this->controller === 'LogoutController' && $this->methods === 'check'){
                     session_destroy();
                     header("location: http://localhost/webart/");
@@ -76,7 +78,8 @@
 
                 }else{
                     if(isset($_SESSION['permissao']) && $_SESSION['permissao'] == 'Professor'){
-                        require_once 'src/App/view/home-professor.php';
+                        $view = new ProfessorController();
+                        $view->exibirHome();
 
                     }else if (isset($_SESSION['permissao']) && $_SESSION['permissao'] == 'Aluno'){
 
@@ -94,7 +97,8 @@
             }else{
                 //verifica a existencia de session
                 if(isset($_SESSION['permissao']) && $_SESSION['permissao'] == 'Professor'){
-                    require_once 'src/App/view/home-professor.php';
+                    $view = new ProfessorController();
+                    $view->exibirHome();
 
                 }else if (isset($_SESSION['permissao']) && $_SESSION['permissao'] == 'Aluno'){
                     //chama o controller responsavel por renderizar a tela do home aluno

@@ -75,8 +75,8 @@ class BancoConexao{
             $statement->execute($param);
             return $statement;
         }catch (PDOException $e){
-            //echo 'erro:78'.$e;
-            return false;
+            echo 'erro:78'.$e;
+            //return false;
         }
     }
 
@@ -108,6 +108,20 @@ class BancoConexao{
          * caso tudo tenha dado certo o id inserido sera retornado
          */
         return  $this->conexao->lastInsertId();
+    }
+    /**
+     * Método Responsavel pela inserção de Dados
+     */
+    public function update($where, $values){
+    $campos = array_keys($values);
+
+    //monta query
+    $query = 'UPDATE '.$this->table.' SET '.implode('=?', $campos).' = ?   WHERE   '.$where;
+        if ($this->executar($query, array_values($values))){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

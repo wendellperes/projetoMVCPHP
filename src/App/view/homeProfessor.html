@@ -36,7 +36,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
-                <h2 class="mb-3">Bem Vindo! <br> {{nomeuser}} </h2>
+                <h2 class="mb-3">Bem Vindo! <br> Professor {{nomeuser}} </h2>
                 <p>Olá! seja muito bem vindo estamos felizes em te ver novamente e continue
                     seus cursos na tabela abaixo</p>
             </div>
@@ -104,7 +104,7 @@
                     <td><img src="{{curso.img}}"></td>
                     <td>{{curso.nome_curso}}</td>
                     <td>{{curso.carga_horaria}}</td>
-                    <td><button type="button" data-toggle="modal" data-target="#modalCadastroCurso"
+                    <td><button type="button" data-toggle="modal" data-target="#modalAtualizaCurso"
                                 id="butaoAtualizar" onclick="exibirDados('{{curso.id_curso}}','{{curso.nome_curso}}','{{curso.carga_horaria}}', '{{curso.categoria}}', '{{curso.img_curso}}')" class="btn btn-primary btn-sm">Alualizar
                     </button></td>
                 </tr>
@@ -155,7 +155,7 @@
                             <option value="fullstack">Fullstack</option>
                         </select>
                     </div>
-                    <input type="hidden" name="id_professor" value="<?php echo $_SESSION['id']?>">
+                    <input type="hidden" name="id_professor" value="{{idProfessor}}">
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </div>
@@ -168,6 +168,67 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+<!-- Modal de cadastro-->
+<div class="modal fade" id="modalAtualizaCurso" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAtualizaLabel">cursostec - Atualizacao Cursos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formAtualizaCursos" method="post" action="http://localhost/webart/update/curso">
+                    <div class="form-group">
+                        <label for="nomecurso">Nome do Curso</label>
+                        <input type="text" class="form-control" value="" required name="nomeCursoAtualiza" id="nomeAtualiza" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="img_curso">Selecione uma imagem para seu curso</label>
+                        <input type="file" name="imageCursoAtualiza" value="" class="form-control-file" id="img_cursoAtualiza">
+                    </div>
+                    <div class="form-group">
+                        <label for="cargahoraria">Carga Horaria</label>
+                        <input type="text" class="form-control" value="" required name="cargaHorariaAtualiza" id="cargahorariaAtualiza" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoriasCursos">Categorias</label>
+                        <select class="form-control" name="categoriaAtualiza" id="categoriasCursosAtualiza">
+                            <option value="">Selecione uma categoria</option>
+                            <option value="frontend">Front end</option>
+                            <option value="backend">Back end</option>
+                            <option value="fullstack">Fullstack</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="id_professor" value="{{idProfessor}}">
+                    <input type="hidden" name="id_curso" value="">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 <button type="button" id="acionarModalCadastroCurso" class="btn btn-primary d-none" data-toggle="modal" data-target="#cadastroRealizadoCurso">
     Launch demo modal
 </button>

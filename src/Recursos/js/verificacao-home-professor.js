@@ -11,9 +11,10 @@ function exibirDados(id, nome, carga, categoria, img){
     console.log(id);
     console.log(nome);
     console.log(carga);
-    $('input[name="nome"]').val(nome);
-    $('input[name="cargaHoraria"]').val(carga);
-    $('select[name=categoria]').val(categoria);
+    $('input[name="nomeCursoAtualiza"]').val(nome);
+    $('input[name=id_curso]').val(id);
+    $('input[name=cargaHorariaAtualiza]').val(carga);
+    $('select[name=categoriaAtualiza]').val(categoria);
     $('input[name=imageCurso]').val(img);
 
 }
